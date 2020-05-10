@@ -52,10 +52,22 @@ class Matrix_Operations:
         return sols
 
     def __Cofactor_Matrix(self, Mat):
-        Cf_mat = Mat.cofactor_matrix()
+        Cf_mat = expand(Mat.cofactor_matrix())
         print("\nCoFactor Matrix: ")
         pprint(Cf_mat.row(0))
         return Cf_mat.row(0)
+
+    def __ModalMatrix(self, Mat, sols):
+        mm = Matrix()
+        for key, value in sols.items():
+            dummy = Matrix()
+            while value > 0:
+                f = Derivative(Mat, self.s, value-1, evaluate=True)
+                dummy.row_insert(value-1, Matrix(f(key)))
+                value -= 1
+            mm.col_join(dummy)
+        pprint(mm)
+        return mm
 
     def main(self):
         A = self.__get_input()
@@ -63,6 +75,7 @@ class Matrix_Operations:
         char_eq = self.__char_eq(si_am)
         roots = self.__roots(char_eq)
         co_fac_row = self.__Cofactor_Matrix(si_am)
+        mm = self.__ModalMatrix(co_fac_row, roots)
 
 
 if __name__ == "__main__":
