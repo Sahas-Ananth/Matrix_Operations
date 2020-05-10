@@ -45,13 +45,15 @@ class Matrix_Operations:
         return eqn
 
     def __roots(self, eqn):
-        return eqn
+        sols = roots(eqn, self.s)
+        print(sols)
+        return sols
 
     def main(self):
         A = self.__get_input()
         si_am = self.__si_am(A)
         char_eq = self.__char_eq(si_am)
-        # roots
+        roots = self.__roots(char_eq)
         # co
 
 
