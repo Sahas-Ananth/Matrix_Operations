@@ -44,6 +44,9 @@ class Matrix_Operations:
         print(eqn)
         return eqn
 
+    def __roots(self, eqn):
+        return eqn
+
     def main(self):
         A = self.__get_input()
         si_am = self.__si_am(A)
