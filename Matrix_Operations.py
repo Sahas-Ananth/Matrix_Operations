@@ -4,7 +4,7 @@ from sympy import *
 
 class Matrix_Operations:
     def __init__(self):
-        self.s = symbols("λ")
+        self.s = symbols("S")
         init_printing(pretty_print=True)
 
     def __get_input(self):
@@ -62,10 +62,12 @@ class Matrix_Operations:
         for key, value in sols.items():
             dummy = Matrix()
             while value > 0:
-                f = Derivative(Mat, self.s, value-1, evaluate=True)
-                dummy.row_insert(value-1, Matrix(f(key)))
+                f = lambdify(self.s, Derivative(Mat, self.s, value-1,
+                                                evaluate=True), "numpy")
+                dummy = dummy.row_insert(value-1, Matrix(f(key)))
                 value -= 1
-            mm.col_join(dummy)
+            mm = mm.col_join(dummy)
+        mm = mm.T
         pprint(mm)
         return mm
 
