@@ -9,7 +9,7 @@ class Matrix_Operations:
 
     def __get_input(self):
         """Gets input from user as a string and generates a matrix.
-        
+
         Returns:
             Matrix -- Sympy Matrix
         """
@@ -46,12 +46,13 @@ class Matrix_Operations:
 
     def __roots(self, eqn):
         sols = roots(eqn, self.s)
-        print()
+        [[print("λ = ", key, end ="\t\t")for i in range(value)]
+         for key, value in sols.items()]
         return sols
 
     def __cofactor_matrix(self, Mat):
         Cf_mat = Mat.co
-        return
+        return None
 
     def main(self):
         A = self.__get_input()
