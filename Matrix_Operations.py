@@ -46,19 +46,23 @@ class Matrix_Operations:
 
     def __roots(self, eqn):
         sols = roots(eqn, self.s)
-        [[print("λ = ", key, end ="\t\t")for i in range(value)]
+        print("\nRoots of the Characteristic equation is: ")
+        [[print("λ = ", key, end="\t\t")for i in range(value)]
          for key, value in sols.items()]
         return sols
 
-    def __cofactor_matrix(self, Mat):
-        Cf_mat = Mat.co
-        return None
+    def __Cofactor_Matrix(self, Mat):
+        Cf_mat = Mat.cofactor_matrix()
+        print("\nCoFactor Matrix: ")
+        pprint(Cf_mat.row(0))
+        return Cf_mat.row(0)
 
     def main(self):
         A = self.__get_input()
         si_am = self.__si_am(A)
         char_eq = self.__char_eq(si_am)
         roots = self.__roots(char_eq)
+        co_fac_row = self.__Cofactor_Matrix(si_am)
 
 
 if __name__ == "__main__":
